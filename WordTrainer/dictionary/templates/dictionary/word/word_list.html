@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Слова{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container-fluid">
+        <button class="btn btn-light" onclick="window.open('/dictionary/'+ {{ dictionary_id }} + '/words/add','popup','width=500,height=400'); return false;">
+            <i class="fas fa-plus-circle"></i> Добавить слово
+        </button><br><br>
+        {% for word in dictionary_word_list %}
+            {{ word.native_meaning }} - {{ word.foreign_meaning }}<br>
+        {% empty %}
+            В этом словаре пока нет слов
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

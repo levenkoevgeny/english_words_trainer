@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Новый словарь{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container-fluid">
+        <form method="post">{% csrf_token %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Название словаря</label>
+                        {% render_field form.dictionary_name|attr:"required:required" class+="form-control" %}
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="new_dictionary_add_button">Создать</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'dictionary/js/dictionary_add_ajax.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Новое слово{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container">
+        <form method="post">{% csrf_token %}
+            <input type="hidden" id="dictionary_id" value="{{ dictionary_id }}">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Значение на родном языке</label>
+                        {% render_field form.native_meaning|attr:"required:required" class+="form-control" %}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Значение на иностранном языке</label>
+                        {% render_field form.foreign_meaning|attr:"required:required" class+="form-control" %}
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="new_word_add_button">Создать</button>
+        </form>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'dictionary/js/word_add_ajax.js' %}"></script>
+{% endblock %}

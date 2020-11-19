@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Слова{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container-fluid">
+    <input type="hidden" value="{{ dictionary_id }}" id="dictionary_id">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" style="width: 50rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Тренажер</h5>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Исходное слово</label>
+                                    <input type="text" class="form-control" id="id_foreign_word">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Перевод</label>
+                                    <input type="text" class="form-control" id="id_native_word">
+                                    <input type="hidden" class="form-control" id="id_native_word_true">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'dictionary:dictionary_words_training' dictionary_id %}" class="card-link" id="next_word">Следующее слово</a>
+                        <a href="#" id="check_answer_button" class="card-link">Проверить ответ</a>
+                        <a href="#" id="show_answer_button" class="card-link">Показать правильный ответ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'dictionary/js/training_ws.js' %}"></script>
+{% endblock %}

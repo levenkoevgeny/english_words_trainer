@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <div class="container">
+        <button class="btn btn-light" onclick="window.open('{% url 'dictionary:dictionary_add' %}','popup','width=500,height=200'); return false;"><i class="fas fa-plus-circle"></i> Добавить словарь</button><br><br>
+        {% for dictionary in dictionary_list %}
+            <a href="{% url 'dictionary:dictionary_word_list' dictionary.id %}" type="button" class="btn btn-primary">
+                {{ dictionary }} <span class="badge badge-light">{{ dictionary.word_set.all.count }}</span>
+            </a>&nbsp;<a class="btn btn-primary" href="{% url 'dictionary:dictionary_words_training' dictionary.id %}">Начать тренировку</a>
+        {% empty %}
+            Пока не создано ни одного словаря
+        {% endfor %}
+    </div>
+{% endblock %}
